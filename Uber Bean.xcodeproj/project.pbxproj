@@ -13,6 +13,8 @@
 		F164C45B20929F4400F39983 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F164C45A20929F4400F39983 /* Assets.xcassets */; };
 		F164C45E20929F4400F39983 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F164C45C20929F4400F39983 /* LaunchScreen.storyboard */; };
 		F164C46120929F4400F39983 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F164C46020929F4400F39983 /* main.m */; };
+		F164C4692092A0F000F39983 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F164C4682092A0F000F39983 /* MapKit.framework */; };
+		F164C46B2092A2BA00F39983 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F164C46A2092A2BA00F39983 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		F164C45D20929F4400F39983 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F164C45F20929F4400F39983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F164C46020929F4400F39983 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F164C4682092A0F000F39983 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F164C46A2092A2BA00F39983 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F164C46B2092A2BA00F39983 /* CoreLocation.framework in Frameworks */,
+				F164C4692092A0F000F39983 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +50,7 @@
 			children = (
 				F164C45020929F4400F39983 /* Uber Bean */,
 				F164C44F20929F4400F39983 /* Products */,
+				F164C4672092A0F000F39983 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +76,15 @@
 				F164C46020929F4400F39983 /* main.m */,
 			);
 			path = "Uber Bean";
+			sourceTree = "<group>";
+		};
+		F164C4672092A0F000F39983 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F164C46A2092A2BA00F39983 /* CoreLocation.framework */,
+				F164C4682092A0F000F39983 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +119,11 @@
 					F164C44D20929F4400F39983 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
