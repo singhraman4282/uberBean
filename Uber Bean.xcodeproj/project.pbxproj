@@ -15,6 +15,7 @@
 		F164C46120929F4400F39983 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F164C46020929F4400F39983 /* main.m */; };
 		F164C4692092A0F000F39983 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F164C4682092A0F000F39983 /* MapKit.framework */; };
 		F164C46B2092A2BA00F39983 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F164C46A2092A2BA00F39983 /* CoreLocation.framework */; };
+		F164C46E20936FEF00F39983 /* Cafe.m in Sources */ = {isa = PBXBuildFile; fileRef = F164C46D20936FEF00F39983 /* Cafe.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		F164C46020929F4400F39983 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F164C4682092A0F000F39983 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F164C46A2092A2BA00F39983 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F164C46C20936FEF00F39983 /* Cafe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cafe.h; sourceTree = "<group>"; };
+		F164C46D20936FEF00F39983 /* Cafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cafe.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				F164C45220929F4400F39983 /* AppDelegate.m */,
 				F164C45420929F4400F39983 /* ViewController.h */,
 				F164C45520929F4400F39983 /* ViewController.m */,
+				F164C46C20936FEF00F39983 /* Cafe.h */,
+				F164C46D20936FEF00F39983 /* Cafe.m */,
 				F164C45720929F4400F39983 /* Main.storyboard */,
 				F164C45A20929F4400F39983 /* Assets.xcassets */,
 				F164C45C20929F4400F39983 /* LaunchScreen.storyboard */,
@@ -163,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F164C46E20936FEF00F39983 /* Cafe.m in Sources */,
 				F164C45620929F4400F39983 /* ViewController.m in Sources */,
 				F164C46120929F4400F39983 /* main.m in Sources */,
 				F164C45320929F4400F39983 /* AppDelegate.m in Sources */,
