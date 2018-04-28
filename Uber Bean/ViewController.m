@@ -12,12 +12,15 @@
 @interface ViewController () 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.allPlaces = [NSArray new];
+    self.listings = [NSMutableArray new];
     
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
@@ -30,18 +33,68 @@
     MKCoordinateSpan span;
     span.latitudeDelta = 0.005;
     span.longitudeDelta = 0.005;
-    CLLocation *location1 = self.locationManager.location;
-    CLLocationCoordinate2D location = location1.coordinate;
-    location.latitude = location1.coordinate.latitude;
-    location.longitude = location1.coordinate.longitude;
+    self.location = self.locationManager.location;
+    CLLocationCoordinate2D location = self.location.coordinate;
+    location.latitude = self.location.coordinate.latitude;
+    location.longitude = self.location.coordinate.longitude;
     region.span = span;
     region.center = location;
-    NSLog(@"user location is %@", [self.locationManager location]);
     [self.mapView setRegion:region animated:YES];
     
-    
-    
-    
+    NetworkManager *myNetMan = [NetworkManager new];
+    [myNetMan dictFromString:@"cafe" andLatitude:self.location.coordinate.latitude andLongitude:self.location.coordinate.longitude completionHandler:^(NSDictionary *returnDict, NSError *error) {
+        
+        self.allPlaces = returnDict[@"businesses"];
+        
+        
+        
+        
+        for (int i=0; i<self.allPlaces.count; i++) {
+            Cafe *thisCafe = [Cafe new];
+            NSDictionary *thisDict = [self.allPlaces objectAtIndex:i];
+            thisCafe.alias = thisDict[@"alias"];
+            thisCafe.categories = thisDict[@"categories"];
+            thisCafe.coordinates = thisDict[@"coordinates"];
+            thisCafe.display_phone = thisDict[@"display_phone"];
+            thisCafe.distance = thisDict[@"distance"];
+            thisCafe.cafeID = thisDict[@"id"];
+            thisCafe.image_url = thisDict[@"image_url"];
+            thisCafe.is_closed = thisDict[@"is_closed"];
+            thisCafe.location = thisDict[@"location"];
+            thisCafe.name = thisDict[@"name"];
+            thisCafe.phone = thisDict[@"phone"];
+            thisCafe.price = thisDict[@"price"];
+            thisCafe.rating = thisDict[@"rating"];
+            thisCafe.reviewCount = thisDict[@"review_count"];
+            thisCafe.transactions = thisDict[@"transactions"];
+            thisCafe.url = thisDict[@"url"];
+            NSURL *thisURL = [NSURL URLWithString:thisCafe.image_url];
+            [self loadImageWithURLandReturnImage:thisURL forCafeObject:thisCafe];
+            [self.listings addObject:thisCafe];
+            
+        }//forLoop
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }];//completion
     
     
     
@@ -64,30 +117,40 @@
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if ((status == kCLAuthorizationStatusAuthorizedAlways) | (kCLAuthorizationStatusAuthorizedWhenInUse)) {
-    
-    [self.locationManager requestLocation];
+        
+        [self.locationManager requestLocation];
     }
     
 }//didChangeAuthorizationStatus
 
 
+-(void)loadImageWithURLandReturnImage:(NSURL *)imageURL forCafeObject:(Cafe *)thisCafeObject{
+    
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:imageURL completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if (error) {
+            NSLog(@"error: %@", error.localizedDescription);
+            return;
+        }
+        
+        NSData *data = [NSData dataWithContentsOfURL:location];
+        UIImage *image = [UIImage imageWithData:data];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            thisCafeObject.image = image;
+        }];
+    }];
+    
+    [downloadTask resume];
+    
+}
 
 
-//- (void)mapView:(MKMapView *)aMapView didUpdateUserLocation:(MKUserLocation *)aUserLocation {
-//    MKCoordinateRegion region;
-//    MKCoordinateSpan span;
-//    span.latitudeDelta = 0.005;
-//    span.longitudeDelta = 0.005;
-//    CLLocationCoordinate2D location;
-//    location.latitude = aUserLocation.coordinate.latitude;
-//    location.longitude = aUserLocation.coordinate.longitude;
-//    region.span = span;
-//    region.center = location;
-////    self.location.coordinate.longitude = aUserLocation.coordinate.longitude;
-//    ;
-//    NSLog(@"user location is %@", [self.locationManager location]);
-//    [aMapView setRegion:region animated:YES];
-//}
+
+
 
 
 

@@ -10,13 +10,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import "Cafe.h"
+#import "NetworkManager.h"
 
 
 @interface ViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate>
 @property (nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
+@property (nonatomic) NSArray *allPlaces;
+@property (nonatomic) NSMutableArray *listings;
 
-//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations;
-//- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error;
 @end
 

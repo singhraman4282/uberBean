@@ -13,8 +13,10 @@
 {
     self = [super init];
     if (self) {
-        self.imageDict = [NSDictionary new];
-        self.imageDict = givenDict;
+        _coordinates = [NSDictionary new];
+        _location = [NSDictionary new];
+        _transactions = [NSArray new];
+        
     }
     return self;
 }
